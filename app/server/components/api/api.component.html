@@ -1,0 +1,45 @@
+<link rel="import" href="../../../../node_modules/@polymer/polymer/polymer.html">
+
+<link rel="import" href="../../../../node_modules/express-web-components/express-app.html">
+<link rel="import" href="../../../../node_modules/express-web-components/express-middleware.html">
+<link rel="import" href="../../../../node_modules/express-web-components/express-router.html">
+
+<link rel="import" href="../bear/bear.component.html">
+
+<dom-module id="na-api">
+    <template>
+        <express-router path="/api">
+            <express-middleware callback="[[allMW]]"></express-middleware>
+            <express-middleware callback="[[indexHandler]]"></express-middleware>
+            <na-bear></na-bear>
+        </express-router>
+    </template>
+
+    <script>
+        class APIComponent {
+            beforeReady() {
+                this.is = 'na-api';
+            }
+
+            get behaviors() {
+                return [ExpressParentBehavior];
+            }
+
+            ready() {
+                // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
+                this.indexHandler = (req, res) => {
+                    res.json({ message: 'hooray! welcome to our api!' });
+                };
+
+                // middleware to use for all requests with /api prefix
+                this.allMW = (req, res, next) => {
+                    // do logging
+                	console.log('Something is happening.');
+                	next();
+                };
+            }
+        }
+
+        Polymer(APIComponent);
+    </script>
+</dom-module>

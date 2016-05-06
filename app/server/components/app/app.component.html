@@ -2,15 +2,17 @@
 
 <link rel="import" href="../../../../node_modules/express-web-components/express-app.html">
 <link rel="import" href="../../../../node_modules/express-web-components/express-router.html">
+<link rel="import" href="../../../../node_modules/express-web-components/express-middleware.html">
 
-<link rel="import" href="../bear/bear.component.html">
+<link rel="import" href="../api/api.component.html">
 
 <dom-module id="na-app">
     <template>
-        <express-app port="5000">
-            <express-router path="/api">
-                <na-bear></na-bear>
-            </express-router>
+        <express-app port="8080">
+            <express-middleware callback="[[morganMW]]"></express-middleware>
+            <express-middleware callback="[[bodyParserURLMW]]"></express-middleware>
+            <express-middleware callback="[[bodyParserJSONMW]]"></express-middleware>
+            <na-api></na-api>
         </express-app>
     </template>
 
@@ -18,6 +20,20 @@
         class AppComponent {
             beforeReady() {
                 this.is = 'na-app';
+            }
+
+            ready() {
+                const bodyParser = require('body-parser');
+                const morgan = require('morgan');
+
+                this.morganMW = morgan('dev'); // log requests to the console
+
+                // configure body parser
+                this.bodyParserURLMW = bodyParser.urlencoded({ extended: true });
+                this.bodyParserJSONMW = bodyParser.json();
+
+                const mongoose = require('mongoose');
+                mongoose.connect('mongodb://node:node@novus.modulusmongo.net:27017/Iganiq8o'); // connect to our database
             }
         }
 
