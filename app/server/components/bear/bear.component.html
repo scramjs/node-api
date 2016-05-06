@@ -1,0 +1,22 @@
+<link rel="import" href="../../../../node_modules/@polymer/polymer/polymer.html">
+
+<link rel="import" href="../../../../node_modules/express-web-components/express-app.html">
+<link rel="import" href="../../../../node_modules/express-web-components/express-middleware.html">
+<link rel="import" href="../../../../node_modules/express-web-components/express-router.html">
+
+<dom-module id="na-bear">
+    <template>
+        <express-app port="5000">
+        </express-app>
+    </template>
+
+    <script>
+        class BearComponent {
+            beforeReady() {
+                this.is = 'na-bear';
+            }
+        }
+
+        Polymer(BearComponent);
+    </script>
+</dom-module>

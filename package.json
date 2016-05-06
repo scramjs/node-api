@@ -6,14 +6,19 @@
     "url": "git://github.com/scotch-io/node-token-authentication"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "xvfb-run electron node_modules/scram-engine/main.js app/server/index.html",
+    "dev-start": "electron node_modules/scram-engine/main.js app/server/index.html",
+    "dev-start-with-window": "electron node_modules/scram-engine/main.js app/server/index.html -d"
   },
-  "author": "Chris Sevilleja <scotch.io>",
+  "author": "Jordan Last",
   "license": "MIT",
   "dependencies": {
+    "@polymer/polymer": "^1.2.5-npm-test.2",
+    "body-parser": "~1.0.1",
     "express": "~4.0.0",
-    "morgan": "~1.0.0",
+    "express-web-components": "0.0.3",
     "mongoose": "~3.6.13",
-    "body-parser": "~1.0.1"
+    "morgan": "~1.0.0",
+    "scram-engine": "0.0.4"
   }
 }
