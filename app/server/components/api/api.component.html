@@ -11,6 +11,8 @@
     <template>
         <express-middleware callback="[[allMW]]"></express-middleware>
 
+        <express-middleware method="get" path="/" callback="[[indexHandler]]"></express-middleware>
+
         <express-router path="/bears">
             <na-bears></na-bears>
         </express-router>
@@ -36,6 +38,11 @@
                     // do logging
                 	console.log('Something is happening.');
                 	next();
+                };
+
+                // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
+                this.indexHandler = (req, res) => {
+                    res.json({ message: 'hooray! welcome to our api!' });
                 };
             }
         }

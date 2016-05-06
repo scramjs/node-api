@@ -13,8 +13,6 @@
             <express-middleware callback="[[bodyParserURLMW]]"></express-middleware>
             <express-middleware callback="[[bodyParserJSONMW]]"></express-middleware>
 
-            <express-middleware method="get" path="/" callback="[[indexHandler]]"></express-middleware>
-
             <express-router path="/api">
                 <na-api></na-api>
             </express-router>
@@ -38,12 +36,7 @@
                 this.bodyParserJSONMW = bodyParser.json();
 
                 const mongoose = require('mongoose');
-                mongoose.connect('mongodb://node:node@novus.modulusmongo.net:27017/Iganiq8o'); // connect to our database
-
-                // test route to make sure everything is working (accessed at GET http://localhost:8080)
-                this.indexHandler = (req, res) => {
-                    res.json({ message: 'hooray! welcome to our api!' });
-                };
+                mongoose.connect('mongodb://@localhost:27017/test'); // connect to our database
             }
         }
 
