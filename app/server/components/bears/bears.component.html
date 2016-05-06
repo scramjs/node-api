@@ -1,0 +1,54 @@
+<link rel="import" href="../../../../node_modules/@polymer/polymer/polymer.html">
+
+<link rel="import" href="../../../../node_modules/express-web-components/express-app.html">
+<link rel="import" href="../../../../node_modules/express-web-components/express-middleware.html">
+<link rel="import" href="../../../../node_modules/express-web-components/express-router.html">
+
+<dom-module id="na-bears">
+    <template>
+        <!--TODO fix the components so that you don't have to put the path on if you put a method-->
+        <express-middleware method="post" path="/" callback="[[createHandler]]"></express-middleware>
+        <express-middleware method="get" path="/" callback="[[getAllHandler]]"></express-middleware>
+    </template>
+
+    <script>
+        class BearsComponent {
+            beforeReady() {
+                this.is = 'na-bears';
+            }
+
+            get behaviors() {
+                return [ExpressParentBehavior];
+            }
+
+            ready() {
+                var Bear = require('./models/bear');
+
+                // create a bear (accessed at POST http://localhost:8080/bears)
+                this.createHandler = (req, res) => {
+                    var bear = new Bear();		// create a new instance of the Bear model
+                    bear.name = req.body.name;  // set the bears name (comes from the request)
+
+                    bear.save(function(err) {
+                        if (err)
+                            res.send(err);
+
+                        res.json({ message: 'Bear created!' });
+                    });
+                };
+
+                // get all the bears (accessed at GET http://localhost:8080/api/bears)
+                this.getAllHandler = (req, res) => {
+                    Bear.find(function(err, bears) {
+                        if (err)
+                            res.send(err);
+
+                        res.json(bears);
+                    });
+                };
+            }
+        }
+
+        Polymer(BearsComponent);
+    </script>
+</dom-module>

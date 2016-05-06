@@ -1,0 +1,69 @@
+<link rel="import" href="../../../../node_modules/@polymer/polymer/polymer.html">
+
+<link rel="import" href="../../../../node_modules/express-web-components/express-app.html">
+<link rel="import" href="../../../../node_modules/express-web-components/express-middleware.html">
+<link rel="import" href="../../../../node_modules/express-web-components/express-router.html">
+
+<dom-module id="na-bear-id">
+    <template>
+        <!--TODO fix the components so that you don't have to put the path on if you put a method-->
+        <express-middleware method="get" path="/" callback="[[getHandler]]"></express-middleware>
+        <express-middleware method="put" path="/" callback="[[updateHandler]]"></express-middleware>
+        <express-middleware method="delete" path="/" callback="[[deleteHandler]]"></express-middleware>
+    </template>
+
+    <script>
+        class BearsIdComponent {
+            beforeReady() {
+                this.is = 'na-bear-id';
+            }
+
+            get behaviors() {
+                return [ExpressParentBehavior];
+            }
+
+            ready() {
+                // get the bear with that id
+                this.getHandler = (req, res) => {
+                    Bear.findById(req.params.bear_id, function(err, bear) {
+            			if (err)
+            				res.send(err);
+            			res.json(bear);
+            		});
+                };
+
+                // update the bear with this id
+                this.updateHandler = (req, res) => {
+                    Bear.findById(req.params.bear_id, function(err, bear) {
+
+            			if (err)
+            				res.send(err);
+
+            			bear.name = req.body.name;
+            			bear.save(function(err) {
+            				if (err)
+            					res.send(err);
+
+            				res.json({ message: 'Bear updated!' });
+            			});
+
+            		});
+                };
+
+                // delete the bear with this id
+                this.deleteHandler = (req, res) => {
+                    Bear.remove({
+            			_id: req.params.bear_id
+            		}, function(err, bear) {
+            			if (err)
+            				res.send(err);
+
+            			res.json({ message: 'Successfully deleted' });
+            		});
+                };
+            }
+        }
+
+        Polymer(BearsIdComponent);
+    </script>
+</dom-module>
