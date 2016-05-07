@@ -5,7 +5,7 @@
 
 <dom-module id="na-app">
     <template>
-        <express-app port="[[port]]">
+        <express-app port="[[port]]" callback="[[appListen]]">
             <express-middleware callback="[[morganMW]]"></express-middleware>
             <express-middleware callback="[[bodyParserURLMW]]"></express-middleware>
             <express-middleware callback="[[bodyParserJSONMW]]"></express-middleware>
@@ -20,8 +20,6 @@
             }
 
             ready() {
-                this.port = process.env.PORT || 8080; //set our port
-
                 const bodyParser = require('body-parser');
                 const morgan = require('morgan');
 
@@ -31,8 +29,14 @@
                 this.bodyParserURLMW = bodyParser.urlencoded({ extended: true });
                 this.bodyParserJSONMW = bodyParser.json();
 
+                this.port = process.env.PORT || 8080; //set our port
+
                 const mongoose = require('mongoose');
                 mongoose.connect('mongodb://@localhost:27017/test'); // connect to our database
+
+                this.appListen = () => {
+                    console.log(`Magic happens on port ${this.port}`);
+                };
             }
         }
 
