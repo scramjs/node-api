@@ -1,21 +1,20 @@
 <link rel="import" href="../../../../node_modules/@polymer/polymer/polymer.html">
-
-<link rel="import" href="../../../../node_modules/express-web-components/express-app.html">
 <link rel="import" href="../../../../node_modules/express-web-components/express-middleware.html">
-<link rel="import" href="../../../../node_modules/express-web-components/express-router.html">
+<link rel="import" href="../../../../node_modules/express-web-components/express-route.html">
 
-<dom-module id="na-bear-id">
+<dom-module id="na-bears-id">
     <template>
-        <!--TODO fix the components so that you don't have to put the path on if you put a method-->
-        <express-middleware method="get" path="/" callback="[[getHandler]]"></express-middleware>
-        <express-middleware method="put" path="/" callback="[[updateHandler]]"></express-middleware>
-        <express-middleware method="delete" path="/" callback="[[deleteHandler]]"></express-middleware>
+        <express-route path="/bears/:bear_id">
+            <express-middleware method="get" callback="[[getHandler]]"></express-middleware>
+            <express-middleware method="put" callback="[[updateHandler]]"></express-middleware>
+            <express-middleware method="delete" callback="[[deleteHandler]]"></express-middleware>
+        </express-route>
     </template>
 
     <script>
         class BearsIdComponent {
             beforeReady() {
-                this.is = 'na-bear-id';
+                this.is = 'na-bears-id';
             }
 
             get behaviors() {
@@ -23,8 +22,11 @@
             }
 
             ready() {
+                var Bear = require('./models/bear');
+
                 // get the bear with that id
                 this.getHandler = (req, res) => {
+                    console.log(req.params);
                     Bear.findById(req.params.bear_id, function(err, bear) {
             			if (err)
             				res.send(err);

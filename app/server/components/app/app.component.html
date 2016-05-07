@@ -1,21 +1,15 @@
 <link rel="import" href="../../../../node_modules/@polymer/polymer/polymer.html">
-
 <link rel="import" href="../../../../node_modules/express-web-components/express-app.html">
-<link rel="import" href="../../../../node_modules/express-web-components/express-router.html">
 <link rel="import" href="../../../../node_modules/express-web-components/express-middleware.html">
-
 <link rel="import" href="../api/api.component.html">
 
 <dom-module id="na-app">
     <template>
-        <express-app port="8080">
+        <express-app port="[[port]]">
             <express-middleware callback="[[morganMW]]"></express-middleware>
             <express-middleware callback="[[bodyParserURLMW]]"></express-middleware>
             <express-middleware callback="[[bodyParserJSONMW]]"></express-middleware>
-
-            <express-router path="/api">
-                <na-api></na-api>
-            </express-router>
+            <na-api></na-api>
         </express-app>
     </template>
 
@@ -26,6 +20,8 @@
             }
 
             ready() {
+                this.port = process.env.PORT || 8080; //set our port
+
                 const bodyParser = require('body-parser');
                 const morgan = require('morgan');
 

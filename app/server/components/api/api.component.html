@@ -1,23 +1,15 @@
 <link rel="import" href="../../../../node_modules/@polymer/polymer/polymer.html">
-
-<link rel="import" href="../../../../node_modules/express-web-components/express-app.html">
 <link rel="import" href="../../../../node_modules/express-web-components/express-middleware.html">
 <link rel="import" href="../../../../node_modules/express-web-components/express-router.html">
-
 <link rel="import" href="../bears/bears.component.html">
 <link rel="import" href="../bears-id/bears-id.component.html">
 
 <dom-module id="na-api">
     <template>
-        <express-middleware callback="[[allMW]]"></express-middleware>
-
-        <express-middleware method="get" path="/" callback="[[indexHandler]]"></express-middleware>
-
-        <express-router path="/bears">
+        <express-router path="/api">
+            <express-middleware callback="[[allMW]]"></express-middleware>
+            <express-middleware method="get" path="/" callback="[[indexHandler]]"></express-middleware>
             <na-bears></na-bears>
-        </express-router>
-
-        <express-router path="/bears/:id">
             <na-bears-id></na-bears-id>
         </express-router>
     </template>

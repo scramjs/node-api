@@ -1,14 +1,13 @@
 <link rel="import" href="../../../../node_modules/@polymer/polymer/polymer.html">
-
-<link rel="import" href="../../../../node_modules/express-web-components/express-app.html">
 <link rel="import" href="../../../../node_modules/express-web-components/express-middleware.html">
-<link rel="import" href="../../../../node_modules/express-web-components/express-router.html">
+<link rel="import" href="../../../../node_modules/express-web-components/express-route.html">
 
 <dom-module id="na-bears">
     <template>
-        <!--TODO fix the components so that you don't have to put the path on if you put a method-->
-        <express-middleware method="post" path="/" callback="[[createHandler]]"></express-middleware>
-        <express-middleware method="get" path="/" callback="[[getAllHandler]]"></express-middleware>
+        <express-route path="/bears">
+            <express-middleware method="post" callback="[[createHandler]]"></express-middleware>
+            <express-middleware method="get" callback="[[getAllHandler]]"></express-middleware>
+        </express-route>
     </template>
 
     <script>
