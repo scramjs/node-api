@@ -1,0 +1,21 @@
+{
+  "name": "node-api",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Jordan Last"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/scramjs/node-api",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0",
+    "express-web-components": "^0.1.6"
+  }
+}
