@@ -16,6 +16,6 @@
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0",
-    "express-web-components": "^0.1.8"
+    "express-web-components": "^0.1.9"
   }
 }
