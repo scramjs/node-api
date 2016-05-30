@@ -8,7 +8,8 @@
   "scripts": {
     "start": "xvfb-run electron node_modules/scram-engine/main.js app/server/index.html",
     "dev": "electron node_modules/scram-engine/main.js app/server/index.html",
-    "dev-window": "electron node_modules/scram-engine/main.js app/server/index.html -d"
+    "dev-window": "electron node_modules/scram-engine/main.js app/server/index.html -d",
+    "dev-file": "electron node_modules/scram-engine/main.js app/server/index.html -d -f"
   },
   "author": "Jordan Last",
   "license": "MIT",
@@ -18,6 +19,6 @@
     "express": "~4.0.0",
     "mongoose": "~3.6.13",
     "morgan": "~1.0.0",
-    "scram-engine": "^0.1.7"
+    "scram-engine": "^0.2.2"
   }
 }
