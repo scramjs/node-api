@@ -20,10 +20,6 @@
                 this.is = 'na-api';
             }
 
-            get behaviors() {
-                return [ExpressParentBehavior];
-            }
-
             ready() {
                 // middleware to use for all requests with /api prefix
                 this.allMW = (req, res, next) => {
