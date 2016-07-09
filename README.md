@@ -1,5 +1,15 @@
 # This is a fork of the original project, rewritten with [Express Web Components](https://github.com/scramjs/express-web-components)
 
+## Usage
+```
+bower install
+npm install
+npm run dev // development without a debug browser window
+npm run-dev-window // development with a debug browser window (recommended)
+```
+
+# The instructions below are for the original repository
+
 # Building a RESTful API in Node and Express
 
 Using the new Express 4.0 Router to build an API
