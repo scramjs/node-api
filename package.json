@@ -15,10 +15,10 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "~1.0.1",
-    "electron-prebuilt": "^1.2.0",
+    "electron-prebuilt": "^1.2.6",
     "express": "~4.0.0",
     "mongoose": "~3.6.13",
     "morgan": "~1.0.0",
-    "scram-engine": "^0.2.2"
+    "scram-engine": "^0.3.1"
   }
 }

@@ -5,8 +5,8 @@
 <dom-module id="na-bears">
     <template>
         <express-route path="/bears">
-            <express-middleware method="post" callback="[[createHandler]]"></express-middleware>
-            <express-middleware method="get" callback="[[getAllHandler]]"></express-middleware>
+            <express-middleware method="post" path="/" callback="[[createHandler]]"></express-middleware>
+            <express-middleware method="get" path="/" callback="[[getAllHandler]]"></express-middleware>
         </express-route>
     </template>
 

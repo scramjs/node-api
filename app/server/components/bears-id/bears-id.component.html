@@ -5,9 +5,9 @@
 <dom-module id="na-bears-id">
     <template>
         <express-route path="/bears/:bear_id">
-            <express-middleware method="get" callback="[[getHandler]]"></express-middleware>
-            <express-middleware method="put" callback="[[updateHandler]]"></express-middleware>
-            <express-middleware method="delete" callback="[[deleteHandler]]"></express-middleware>
+            <express-middleware method="get" path="/" callback="[[getHandler]]"></express-middleware>
+            <express-middleware method="put" path="/" callback="[[updateHandler]]"></express-middleware>
+            <express-middleware method="delete" path="/" callback="[[deleteHandler]]"></express-middleware>
         </express-route>
     </template>
 
