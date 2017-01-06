@@ -6,19 +6,18 @@
     "url": "git://github.com/scotch-io/node-token-authentication"
   },
   "scripts": {
-    "start": "xvfb-run electron node_modules/scram-engine/main.js app/server/index.html",
-    "dev": "electron node_modules/scram-engine/main.js app/server/index.html",
-    "dev-window": "electron node_modules/scram-engine/main.js app/server/index.html -d",
-    "dev-file": "electron node_modules/scram-engine/main.js app/server/index.html -d -f"
+    "start": "xvfb-run electron node_modules/scram-engine/main.js --entry-file app/server/index.html",
+    "dev": "electron node_modules/scram-engine/main.js --entry-file app/server/index.html",
+    "dev-window": "electron node_modules/scram-engine/main.js --entry-file app/server/index.html --window",
+    "dev-file": "electron node_modules/scram-engine/main.js --entry-file app/server/index.html --file-system --window"
   },
   "author": "Jordan Last",
   "license": "MIT",
   "dependencies": {
     "body-parser": "~1.0.1",
-    "electron-prebuilt": "^1.2.6",
     "express": "~4.0.0",
     "mongoose": "~3.6.13",
     "morgan": "~1.0.0",
-    "scram-engine": "^0.3.1"
+    "scram-engine": "^0.4.4"
   }
 }
